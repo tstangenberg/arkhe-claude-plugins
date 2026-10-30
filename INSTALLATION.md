@@ -129,6 +129,45 @@ Each `AGENTS.md` contains a one-line pointer to the global `using-arkhe-skills` 
 
 ---
 
+## Install on Devin
+
+> **Note:** Run `devin auth login` first — managing plugins requires being signed in.
+
+Devin loads each plugin natively from `.devin-plugins/<plugin>/`: a `.devin-plugin/plugin.json` manifest, symlinked `skills/` (and `agents/` where present), and generated `devin-commands/` wrapper skills that preserve the Claude slash-command names.
+
+```bash
+# Install a single plugin (git-subdir source)
+devin plugins install tstangenberg/arkhe-claude-plugins#.devin-plugins/core
+devin plugins install tstangenberg/arkhe-claude-plugins#.devin-plugins/git
+# ...repeat per plugin
+
+# Or install the meta-plugin: pulls in core and endorses the rest
+devin plugins install tstangenberg/arkhe-claude-plugins
+
+# From a local checkout (linked — edits apply on next session, this machine only)
+devin plugins install --local ./arkhe-claude-plugins/.devin-plugins/git
+
+# Manage
+devin plugins list
+devin plugins info git
+devin plugins update git
+devin plugins remove git
+```
+
+Install `core` first — its `using-arkhe-skills` bootstrap skill maps Claude-only primitives to Devin equivalents. The meta-plugin requires `core` for the same reason.
+
+### Behavioral notes on Devin
+
+- **Two install paths.** `#plugins/<name>` (canonical dir) works too — Devin falls back to `.claude-plugin/plugin.json` — but you get skills and agents only, no commands. Prefer `#.devin-plugins/<name>` for the full experience.
+- **Commands become skills.** Devin's plugin model has no `commands/` concept. `scripts/generate-devin-commands.py` emits a wrapper `SKILL.md` per command so `/git:commit`, `/core:develop`, etc. work verbatim. Commands whose name already matches a skill (`doc:rfc`, `design-intent:prototype`, `git:release-please-setup`, `spring-boot:spring-refresh`) need no wrapper — the namespaced skill owns the slash name.
+- **Agents load natively** as `<plugin>:<agent>` subagent profiles — but only in the CLI and Devin Desktop, not cloud sessions. The six subagent-heavy commands carry a note mapping `Agent`/`Task` dispatch to `run_subagent`.
+- **`bin/` is not on PATH.** Claude Code puts plugin `bin/` dirs on PATH; Devin does not. `devtools`' `arkhe-preview` CLI (used by `design-intent:prototype` and `core:sdlc-develop`'s VERIFY UI route) must be invoked by absolute path under the plugin directory until the skills grow a Devin-aware fallback.
+- **`allowed-tools` frontmatter is best-effort.** Canonical skills use Claude tool names (`Read`, `Bash(gh pr view:*)`); Devin's tool names are lowercase (`read`, `exec`). Unrecognized entries may be dropped — verify tool-gated skills after install.
+- **Symlinks required.** `.devin-plugins/*/skills` and `agents` are symlinks into `plugins/`; installs from a checkout with `core.symlinks=false` won't resolve them. Git installs are unaffected.
+- **Cross-plugin deps.** `core` and `design-intent` endorse `devtools` via `optionalPlugins` (arkhe-preview runtime dependency). The meta-plugin at the repo root requires `core` and lists the other 11 as `optionalPlugins`; move entries to `requiredPlugins` if you want install-all behavior.
+
+---
+
 ## Plugin Overview
 
 ### Core Plugin

@@ -1,5 +1,5 @@
 {
-  "_comment": "Per-plugin versioning. Each plugin owns its own version across 3 manifests (Claude + Gemini + Codex). Use `bump-version.sh --plugin <name> <version>` to bump a single plugin's three manifests in lockstep. Use --skip-shims to bump Claude-only.",
+  "_comment": "Per-plugin versioning. Each plugin owns its own version across 4 manifests (Claude + Gemini + Codex + Devin). Use `bump-version.sh --plugin <name> <version>` to bump a single plugin's manifests in lockstep. Use --skip-shims to bump Claude-only.",
   "files": [
     { "path": "plugins/core/.claude-plugin/plugin.json", "field": "version", "plugin": "core", "platform": "claude" },
     { "path": "plugins/design-intent/.claude-plugin/plugin.json", "field": "version", "plugin": "design-intent", "platform": "claude" },
@@ -51,7 +51,20 @@
     { "path": ".codex-marketplace/ralph/plugin.json", "field": "version", "plugin": "ralph", "platform": "codex" },
     { "path": ".codex-marketplace/review/plugin.json", "field": "version", "plugin": "review", "platform": "codex" },
     { "path": ".codex-marketplace/roadmap/plugin.json", "field": "version", "plugin": "roadmap", "platform": "codex" },
-    { "path": ".codex-marketplace/spring-boot/plugin.json", "field": "version", "plugin": "spring-boot", "platform": "codex" }
+    { "path": ".codex-marketplace/spring-boot/plugin.json", "field": "version", "plugin": "spring-boot", "platform": "codex" },
+
+    { "path": ".devin-plugins/core/.devin-plugin/plugin.json", "field": "version", "plugin": "core", "platform": "devin" },
+    { "path": ".devin-plugins/design-intent/.devin-plugin/plugin.json", "field": "version", "plugin": "design-intent", "platform": "devin" },
+    { "path": ".devin-plugins/devtools/.devin-plugin/plugin.json", "field": "version", "plugin": "devtools", "platform": "devin" },
+    { "path": ".devin-plugins/doc/.devin-plugin/plugin.json", "field": "version", "plugin": "doc", "platform": "devin" },
+    { "path": ".devin-plugins/git/.devin-plugin/plugin.json", "field": "version", "plugin": "git", "platform": "devin" },
+    { "path": ".devin-plugins/google-stitch/.devin-plugin/plugin.json", "field": "version", "plugin": "google-stitch", "platform": "devin" },
+    { "path": ".devin-plugins/lang/.devin-plugin/plugin.json", "field": "version", "plugin": "lang", "platform": "devin" },
+    { "path": ".devin-plugins/playwright/.devin-plugin/plugin.json", "field": "version", "plugin": "playwright", "platform": "devin" },
+    { "path": ".devin-plugins/ralph/.devin-plugin/plugin.json", "field": "version", "plugin": "ralph", "platform": "devin" },
+    { "path": ".devin-plugins/review/.devin-plugin/plugin.json", "field": "version", "plugin": "review", "platform": "devin" },
+    { "path": ".devin-plugins/roadmap/.devin-plugin/plugin.json", "field": "version", "plugin": "roadmap", "platform": "devin" },
+    { "path": ".devin-plugins/spring-boot/.devin-plugin/plugin.json", "field": "version", "plugin": "spring-boot", "platform": "devin" }
   ],
   "audit": {
     "exclude": [
@@ -68,6 +81,7 @@
       "CLAUDE.md",
       ".codex-marketplace",
       ".gemini-extensions",
+      ".devin-plugins",
       "plugins",
       ".claude"
     ]

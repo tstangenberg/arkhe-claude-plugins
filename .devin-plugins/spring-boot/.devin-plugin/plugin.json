@@ -1,0 +1,9 @@
+{
+  "name": "spring-boot",
+  "version": "1.2.0",
+  "description": "Domain-Driven Design with Spring Boot 4 (DDD patterns, Spring Data, REST APIs, Spring Modulith)",
+  "skills": [
+    "skills",
+    "devin-commands"
+  ]
+}

@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
-# Orchestrate Gemini and Codex shim generation for all arkhe plugins.
+# Orchestrate Gemini, Codex, and Devin shim generation for all arkhe plugins.
 #
-# Reads .claude-plugin/marketplace.json to enumerate plugins. Runs the two
-# Python generators (transpile-commands.py, generate-codex-agents-md.py),
-# then writes per-plugin Gemini and Codex manifests, GEMINI.md context files,
-# and skills symlinks. Idempotent: re-running produces no diff.
+# Reads .claude-plugin/marketplace.json to enumerate plugins. Runs the three
+# Python generators (transpile-commands.py, generate-codex-agents-md.py,
+# generate-devin-commands.py), then writes per-plugin Gemini and Codex
+# manifests, GEMINI.md context files, Devin .devin-plugin manifests, and
+# skills/agents symlinks. Idempotent: re-running produces no diff.
 #
 # Requires: bash 4+, jq, python3 (3.8+).
 
@@ -24,8 +25,10 @@ MARKETPLACE="$REPO_ROOT/.claude-plugin/marketplace.json"
 PLUGINS_DIR="$REPO_ROOT/plugins"
 GEMINI_ROOT="$REPO_ROOT/.gemini-extensions"
 CODEX_ROOT="$REPO_ROOT/.codex-marketplace"
+DEVIN_ROOT="$REPO_ROOT/.devin-plugins"
 TRANSPILE="$REPO_ROOT/scripts/transpile-commands.py"
 CODEX_GEN="$REPO_ROOT/scripts/generate-codex-agents-md.py"
+DEVIN_GEN="$REPO_ROOT/scripts/generate-devin-commands.py"
 READMES_GEN="$REPO_ROOT/scripts/update-plugin-readmes.py"
 
 err() { printf 'build-shims: %s\n' "$*" >&2; exit 1; }
@@ -33,13 +36,26 @@ err() { printf 'build-shims: %s\n' "$*" >&2; exit 1; }
 [[ -f "$MARKETPLACE" ]] || err "marketplace.json not found at $MARKETPLACE"
 command -v jq >/dev/null 2>&1 || err "jq is required (brew install jq)"
 command -v python3 >/dev/null 2>&1 || err "python3 is required"
+
+# Repo URL baked into generated Devin git-subdir dependency entries.
+# Derived from origin so forks produce self-referencing URLs; normalized
+# to an https .git URL. Empty when the checkout has no origin remote.
+REPO_GIT_URL=$(git -C "$REPO_ROOT" config --get remote.origin.url 2>/dev/null || true)
+if [[ "$REPO_GIT_URL" == git@* ]]; then
+    REPO_GIT_URL=$(printf '%s' "$REPO_GIT_URL" | sed -E 's#^git@([^:]+):#https://\1/#')
+fi
+if [[ -n "$REPO_GIT_URL" && "$REPO_GIT_URL" != *.git ]]; then
+    REPO_GIT_URL="$REPO_GIT_URL.git"
+fi
 [[ -x "$TRANSPILE" ]] || err "transpile-commands.py not executable: $TRANSPILE"
 [[ -x "$CODEX_GEN" ]] || err "generate-codex-agents-md.py not executable: $CODEX_GEN"
+[[ -x "$DEVIN_GEN" ]] || err "generate-devin-commands.py not executable: $DEVIN_GEN"
 [[ -x "$READMES_GEN" ]] || err "update-plugin-readmes.py not executable: $READMES_GEN"
 
 # Step 1: run Python generators (idempotent; they write their own outputs).
 python3 "$TRANSPILE"
 python3 "$CODEX_GEN"
+python3 "$DEVIN_GEN"
 python3 "$READMES_GEN"
 
 # Atomic write: render to temp file, only move into place if content differs.
@@ -59,6 +75,9 @@ write_if_changed() {
 }
 
 # Idempotent symlink: create if missing, replace only if target differs.
+# Checkouts with core.symlinks=false (e.g. Windows without symlink
+# privilege) materialize links as plain files containing the target path —
+# self-heal those into real symlinks so the build stays idempotent.
 ensure_symlink() {
     local link_path="$1" target="$2"
     if [[ -L "$link_path" ]]; then
@@ -67,7 +86,11 @@ ensure_symlink() {
         [[ "$current" == "$target" ]] && return 0
         rm "$link_path"
     elif [[ -e "$link_path" ]]; then
-        err "$link_path exists and is not a symlink"
+        if [[ -f "$link_path" && "$(cat "$link_path")" == "$target" ]]; then
+            rm "$link_path"
+        else
+            err "$link_path exists and is not a symlink"
+        fi
     fi
     ln -s "$target" "$link_path"
 }
@@ -162,6 +185,46 @@ while IFS=$'\t' read -r plugin description; do
         '{name: $name, description: $desc, version: $ver}' \
         | write_if_changed "$codex_dir/plugin.json"
     ensure_symlink "$codex_dir/skills" "../../plugins/$plugin/skills"
+
+    # --- Devin plugin ---
+    # .devin-plugins/<p>/ holds a native .devin-plugin/plugin.json (takes
+    # precedence over the .claude-plugin fallback), a skills symlink, an
+    # agents symlink when the plugin ships agents, and generated
+    # devin-commands/<cmd>/SKILL.md wrappers from generate-devin-commands.py.
+    devin_dir="$DEVIN_ROOT/$plugin"
+    mkdir -p "$devin_dir/.devin-plugin"
+
+    skills_json='["skills"]'
+    [[ -d "$devin_dir/devin-commands" ]] && skills_json='["skills","devin-commands"]'
+
+    # Cross-plugin runtime deps surface as optionalPlugins endorsements
+    # (allow-list entries; they never auto-install). core's VERIFY UI route
+    # and design-intent's /prototype gallery both call devtools'
+    # arkhe-preview CLI.
+    optional_json='[]'
+    if [[ -n "$REPO_GIT_URL" ]]; then
+        case "$plugin" in
+            core|design-intent)
+                optional_json=$(jq -n --arg url "$REPO_GIT_URL" \
+                    '[{source: "git-subdir", url: $url, path: ".devin-plugins/devtools"}]')
+                ;;
+        esac
+    fi
+
+    jq -n --arg name "$plugin" --arg desc "$description" --arg ver "$version" \
+        --argjson skills "$skills_json" --argjson optional "$optional_json" \
+        '{name: $name, version: $ver, description: $desc, skills: $skills}
+         + (if ($optional | length) > 0 then {optionalPlugins: $optional} else {} end)' \
+        | write_if_changed "$devin_dir/.devin-plugin/plugin.json"
+    ensure_symlink "$devin_dir/skills" "../../plugins/$plugin/skills"
+    if [[ -d "$PLUGINS_DIR/$plugin/agents" ]]; then
+        ensure_symlink "$devin_dir/agents" "../../plugins/$plugin/agents"
+    fi
+    # bin/ isn't on PATH on Devin, but keep it reachable inside the plugin
+    # dir so skills can resolve tools (e.g. devtools' arkhe-preview) by path.
+    if [[ -d "$PLUGINS_DIR/$plugin/bin" ]]; then
+        ensure_symlink "$devin_dir/bin" "../../plugins/$plugin/bin"
+    fi
 
     plugin_count=$((plugin_count + 1))
 done < <(jq -r '.plugins[] | [.name, .description] | @tsv' "$MARKETPLACE")

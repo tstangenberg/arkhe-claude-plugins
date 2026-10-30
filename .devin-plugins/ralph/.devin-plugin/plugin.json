@@ -1,0 +1,9 @@
+{
+  "name": "ralph",
+  "version": "2.0.0",
+  "description": "Autonomous development loop with fresh context per iteration, Hat-lite builder/verifier system, task sets, and persistent memories",
+  "skills": [
+    "skills",
+    "devin-commands"
+  ]
+}

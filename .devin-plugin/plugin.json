@@ -1,0 +1,74 @@
+{
+  "name": "arkhe",
+  "version": "1.0.0",
+  "description": "Arkhe plugin collection meta-plugin for Devin — installing this repo pulls in the core baseline and endorses the full plugin set",
+  "author": { "name": "Arkhe" },
+  "license": "MIT",
+  "keywords": ["devin", "plugin", "marketplace", "agents", "skills"],
+
+  "requiredPlugins": [
+    {
+      "source": "git-subdir",
+      "url": "https://github.com/tstangenberg/arkhe-claude-plugins.git",
+      "path": ".devin-plugins/core"
+    }
+  ],
+
+  "optionalPlugins": [
+    {
+      "source": "git-subdir",
+      "url": "https://github.com/tstangenberg/arkhe-claude-plugins.git",
+      "path": ".devin-plugins/design-intent"
+    },
+    {
+      "source": "git-subdir",
+      "url": "https://github.com/tstangenberg/arkhe-claude-plugins.git",
+      "path": ".devin-plugins/devtools"
+    },
+    {
+      "source": "git-subdir",
+      "url": "https://github.com/tstangenberg/arkhe-claude-plugins.git",
+      "path": ".devin-plugins/doc"
+    },
+    {
+      "source": "git-subdir",
+      "url": "https://github.com/tstangenberg/arkhe-claude-plugins.git",
+      "path": ".devin-plugins/git"
+    },
+    {
+      "source": "git-subdir",
+      "url": "https://github.com/tstangenberg/arkhe-claude-plugins.git",
+      "path": ".devin-plugins/google-stitch"
+    },
+    {
+      "source": "git-subdir",
+      "url": "https://github.com/tstangenberg/arkhe-claude-plugins.git",
+      "path": ".devin-plugins/lang"
+    },
+    {
+      "source": "git-subdir",
+      "url": "https://github.com/tstangenberg/arkhe-claude-plugins.git",
+      "path": ".devin-plugins/playwright"
+    },
+    {
+      "source": "git-subdir",
+      "url": "https://github.com/tstangenberg/arkhe-claude-plugins.git",
+      "path": ".devin-plugins/ralph"
+    },
+    {
+      "source": "git-subdir",
+      "url": "https://github.com/tstangenberg/arkhe-claude-plugins.git",
+      "path": ".devin-plugins/review"
+    },
+    {
+      "source": "git-subdir",
+      "url": "https://github.com/tstangenberg/arkhe-claude-plugins.git",
+      "path": ".devin-plugins/roadmap"
+    },
+    {
+      "source": "git-subdir",
+      "url": "https://github.com/tstangenberg/arkhe-claude-plugins.git",
+      "path": ".devin-plugins/spring-boot"
+    }
+  ]
+}
