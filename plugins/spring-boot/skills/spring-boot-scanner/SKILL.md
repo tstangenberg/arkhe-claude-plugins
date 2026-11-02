@@ -29,6 +29,7 @@ Scans in 3 phases: (1) detect Spring Boot project via build files, (2) scan anno
 | `@Entity`, `@Repository`, `@Aggregate`, `@MappedSuperclass` | spring-boot-data-ddd | LOW |
 | `@Service` in `**/domain/**` or `**/service/**` | domain-driven-design | LOW |
 | `@ApplicationModule`, `@ApplicationModuleListener` | spring-boot-modulith | LOW |
+| `@Valid`, `@Validated`, `@Constraint`, `ConstraintValidator` | spring-boot-bean-validation | LOW |
 | `@Timed`, `@Counted`, `HealthIndicator`, `MeterRegistry` | spring-boot-observability | LOW |
 | `@EnableWebSecurity`, `@PreAuthorize`, `@Secured`, `SecurityFilterChain` | spring-boot-security | HIGH |
 | `@SpringBootTest`, `@WebMvcTest`, `@DataJpaTest`, `@MockitoBean` | spring-boot-testing | HIGH |
@@ -71,6 +72,7 @@ Always confirm before proceeding when detecting:
 
 **Delegates to Skills**:
 - `spring-boot-web-api` → REST patterns
+- `spring-boot-bean-validation` → Constraints, custom validators, validation error mapping
 - `spring-boot-data-ddd` → Repository/Entity patterns
 - `spring-boot-security` → Security configuration
 - `spring-boot-testing` → Test patterns

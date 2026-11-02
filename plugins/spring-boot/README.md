@@ -27,6 +27,7 @@ Domain-Driven Design patterns with Spring Boot 4 implementation for complex busi
 | **domain-driven-design** | Strategic and tactical DDD guidance | "DDD", "bounded context", "aggregate", "domain model", "ubiquitous language" |
 | **spring-boot-data-ddd** | JPA/JDBC implementation patterns | JPA aggregates, Spring Data repositories, entity auditing, projections |
 | **spring-boot-web-api** | REST API patterns | REST controllers, validation, ProblemDetail (RFC 9457), WebFlux |
+| **spring-boot-bean-validation** | Bean Validation 3.1 and Hibernate Validator 9 | @Valid, @Validated, custom constraints, method validation, validation error mapping |
 | **spring-boot-modulith** | Modular monolith with Spring Modulith 2.0 | Module structure, @ApplicationModuleListener, event externalization |
 | **spring-boot-security** | Spring Security 7, Lambda DSL, JWT/OAuth2 | Authentication, authorization, CORS/CSRF, method security |
 | **spring-boot-observability** | Actuator, Micrometer, OpenTelemetry | Health checks, metrics, distributed tracing, Kubernetes probes |
@@ -199,6 +200,7 @@ Skills auto-invoke based on context:
 | **domain-driven-design** | Subdomains, bounded contexts, aggregates, domain services, anti-patterns |
 | **spring-boot-data-ddd** | Strongly-typed IDs, value objects, repositories, transactions, projections |
 | **spring-boot-web-api** | Validation groups, exception handlers, content negotiation, WebFlux |
+| **spring-boot-bean-validation** | Constraints, custom validators with DI, method validation, exception mapping, testing |
 | **spring-boot-modulith** | Package conventions, event publishing, module testing, event externalization |
 | **spring-boot-security** | Lambda DSL, SecurityFilterChain, OAuth2/JWT, @PreAuthorize, password encoding |
 | **spring-boot-observability** | Actuator endpoints, Micrometer Timer/Counter/Gauge, OpenTelemetry spans |
