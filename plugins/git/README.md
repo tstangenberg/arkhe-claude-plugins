@@ -317,7 +317,7 @@ Scaffold or migrate a repository onto [release-please](https://github.com/google
 
 ---
 
-### Skills (9)
+### Skills (11)
 
 All commands are implemented as **Skills** - slash commands delegate to skills that contain inline Bash workflows executed by Claude.
 
@@ -448,6 +448,22 @@ Scaffolds or migrates a repository onto release-please, generating its config + 
 **Deterministic core** (Python, stdlib only): package discovery, release-type detection, config generation (mutual `exclude-paths` matrix), manifest seeding. **Templates**: six tag-keyed deploy/publish workflows derived from real production pipelines.
 
 **Documentation**: See `skills/release-please-setup/` for WORKFLOW, EXAMPLES, CONTRACT (the release-please/tag contract + token gotcha), and TROUBLESHOOTING.
+
+#### 10. configuring-issue-tracker
+
+Sets up where issues live for this repo (GitHub, GitLab, or local `.scratch/` markdown), the triage label vocabulary, and the domain doc layout. Run once before using `triaging-issues`.
+
+**Location**: `skills/configuring-issue-tracker/`
+**Invoked by**: `/configuring-issue-tracker` skill (command-invoke)
+
+#### 11. triaging-issues
+
+Moves issues and external PRs/MRs through the triage state machine: categorises bugs and enhancements, verifies claims against the code, clarifies requests, and writes agent-ready briefs. Rejected enhancements go to `.out-of-scope/`.
+
+**Location**: `skills/triaging-issues/` (includes `AGENT-BRIEF.md` and `OUT-OF-SCOPE.md`)
+**Invoked by**: `/triaging-issues` skill (command-invoke)
+
+**Attribution**: adapted from matts-skills (MIT); see [NOTICE.md](NOTICE.md).
 
 ---
 

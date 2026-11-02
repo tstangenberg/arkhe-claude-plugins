@@ -7,6 +7,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+#### Issue Triage Skills (git plugin)
+- **`configuring-issue-tracker`** (command-invoke): sets up the repo's issue tracker (GitHub, GitLab, or local `.scratch/` markdown), the triage label vocabulary, and the domain doc layout. Writes `docs/agents/*.md` and an `## Agent skills` block in `CLAUDE.md`/`AGENTS.md`.
+- **`triaging-issues`** (command-invoke): moves issues and optionally external PRs/MRs through the `needs-triage` / `needs-info` / `ready-for-agent` / `ready-for-human` / `wontfix` state machine. Verifies claims against the codebase, writes agent briefs, and records rejected enhancements in `.out-of-scope/`.
+- Adapted from [matts-skills](https://github.com/mattpocock/skills) (MIT); see `plugins/git/NOTICE.md`.
+
+#### Domain Modeling Skill (doc plugin)
+- **`domain-modeling`** (auto-invoke): builds and sharpens `GLOSSARY.md` / `GLOSSARY-MAP.md` as terms are resolved, using the `GLOSSARY-FORMAT.md` term format. ADR creation is delegated to the existing `adr` skill.
+- Adapted from matts-skills (MIT); see `plugins/doc/NOTICE.md`.
+- `domain-modeling` can now create `GLOSSARY-MAP.md` and per-context glossaries for multi-context repos, after confirming the contexts with the user.
+
+#### Glossary Step in SDLC (core plugin)
+- **`sdlc-develop` Phase 5, step 1 "Update Domain Glossary"** (runs before Final Tasks Verification; later Phase 5 steps renumbered 2–6): collects domain terms from `spec.md`, `plan.md`, and the feature's public names, then runs `domain-modeling`. Skipped when the `doc` plugin isn't installed. Under `--auto`, conflicts are recorded in Next Steps instead of resolved. Changed glossary and ADR files are added to Files Modified.
+
 ### Removed
 
 #### AI Plugin Retired (BREAKING)

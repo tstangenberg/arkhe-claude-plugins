@@ -28,6 +28,8 @@ Multi-purpose documentation toolkit for generating comprehensive technical docum
 
 - **rfc**: Unified RFC management with 5 operations: create, review, list, update, and status. Use `/rfc create <topic>` to draft a populated RFC from conversation context and codebase analysis; `/rfc review <path>` to evaluate against 7 architecture dimensions; `/rfc list` to show all RFCs with status; `/rfc update <path>` to re-draft specific sections; `/rfc status <number> <status>` to transition status with validation and side effects. User-invoked only.
 
+- **domain-modeling**: Auto-invoked domain model builder. Maintains `GLOSSARY.md` (or `GLOSSARY-MAP.md` with per-context glossaries for multi-context repos) as terms are resolved: challenges terms that conflict with the glossary, sharpens vague language, stress-tests relationships with concrete scenarios, and cross-checks claims against the code. Triggers on "glossary", "ubiquitous language", "domain terms", "sharpen terminology", or when editing `GLOSSARY.md`. Hands ADR-worthy decisions to the `adr` skill.
+
 - **doc-freshness**: Auto-invoked documentation drift and staleness detection. Scans for broken links, version mismatches, git staleness, code-doc drift, and cross-document inconsistencies. Supports tiered scanning: basic checks (links, git age) for all `.md` files, deep checks (version drift, semantic staleness, cross-doc consistency) for frontmatter-tracked docs. Modes: `scan`, `links`, `check <path>`, `drift <path>`, `cross-doc`, `report`. Triggers on "doc freshness", "stale docs", "documentation drift", "broken links", "doc health", "doc audit".
 
 ### Commands

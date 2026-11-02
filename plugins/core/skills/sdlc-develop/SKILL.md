@@ -119,7 +119,7 @@ Load phase files **only when entering that phase**:
 | 2 | [PHASE-2-ARCHITECTURE.md](phases/PHASE-2-ARCHITECTURE.md) | Design approach, save plan |
 | 3 | [PHASE-3-WORKSTREAMS.md](phases/PHASE-3-WORKSTREAMS.md) | Break into parallel tasks |
 | 4 | [PHASE-4-IMPLEMENTATION.md](phases/PHASE-4-IMPLEMENTATION.md) | Build and validate |
-| 5 | [PHASE-5-SUMMARY.md](phases/PHASE-5-SUMMARY.md) | Document completion |
+| 5 | [PHASE-5-SUMMARY.md](phases/PHASE-5-SUMMARY.md) | Document completion, update domain glossary |
 
 ## Model Tiers
 

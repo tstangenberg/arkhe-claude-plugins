@@ -106,7 +106,7 @@ Quality control and workflow orchestration utilities.
 ### Doc Plugin
 Multi-purpose documentation toolkit with RFC management and documentation health.
 - **Agents**: `rfc-critic`, `adr-critic`
-- **Skills**: `doc-coauthoring`, `diagramming`, `code-explanation`, `jd-docs`, `diataxis`, `adr`, `rfc`, `doc-freshness`, `research-frontmatter` (all auto-invoke)
+- **Skills**: `doc-coauthoring`, `diagramming`, `code-explanation`, `jd-docs`, `diataxis`, `adr`, `rfc`, `doc-freshness`, `research-frontmatter`, `domain-modeling` (all auto-invoke)
 - **Commands**: `/code-explain`, `/diagram`, `/rfc`, `/health`
 - **Use**: Documentation generation, code explanation, Mermaid diagrams, Johnny.Decimal management, Diataxis framework (audit, classify, validate, scaffold), ADR management, RFC lifecycle (create, review, list, update), documentation health (freshness, links, drift, cross-doc consistency), research frontmatter validation (JD-aware path resolution, RD-rules)
 
@@ -124,7 +124,7 @@ Claude + Google Stitch workflow toolkit with MCP integration.
 ### Git Plugin
 Git workflow automation for commits, pull requests, branching, changelog generation, releases, and Dependabot triage.
 - **Commands**: `/commit`, `/create-pr`, `/create-branch`, `/changelog`, `/release`, `/release-please-setup`, `/resolve-review`, `/stale-branches`, `/cleanup-branches`, `/worktree`
-- **Skills**: 11 skills (4 auto-invoke: `generating-changelog`, `listing-stale-branches`, `cleaning-up-branches`, `resolving-pr-issues`; 7 command-invoke: `creating-branch`, `creating-commit`, `creating-pr`, `creating-worktree`, `releasing`, `dependabot-review`, `release-please-setup`)
+- **Skills**: 13 skills (4 auto-invoke: `generating-changelog`, `listing-stale-branches`, `cleaning-up-branches`, `resolving-pr-issues`; 9 command-invoke: `creating-branch`, `creating-commit`, `creating-pr`, `creating-worktree`, `releasing`, `dependabot-review`, `release-please-setup`, `configuring-issue-tracker`, `triaging-issues`)
 - **Use**: Git commits, PRs, branches, changelogs, semantic versioning releases, release pipeline scaffolding, release-please setup/migration (monorepo + single-package + mixed-language, with tag-keyed deploy/publish templates), Dependabot PR triage
 
 ### Design Intent Plugin
@@ -659,7 +659,7 @@ See [docs/README.md](docs/README.md) "Maintaining This Documentation" section fo
 
 ## Plugin Versions
 
-Plugin versions: core 2.3.0, doc 1.12.0, design-intent 2.3.0, git 1.2.0, google-stitch 2.0.0, lang 1.0.0, playwright 1.0.0, spring-boot 1.2.0, ralph 2.0.0, roadmap 3.0.0, review 2.0.0, devtools 2.5.0. When making breaking changes, increment the major version and update `plugin.json`.
+Plugin versions: core 2.4.0, doc 1.13.0, design-intent 2.3.0, git 1.3.0, google-stitch 2.0.0, lang 1.0.0, playwright 1.0.0, spring-boot 1.2.0, ralph 2.0.0, roadmap 3.0.0, review 2.0.0, devtools 2.5.0. When making breaking changes, increment the major version and update `plugin.json`.
 
 ## Related Documentation
 
