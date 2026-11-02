@@ -59,9 +59,9 @@ When the user states how something works, check whether the code agrees. If you 
 
 ### Update GLOSSARY.md inline
 
-When a term is resolved, update `GLOSSARY.md` right there. Don't batch these up: capture them as they happen. Use the format in [GLOSSARY-FORMAT.md](./GLOSSARY-FORMAT.md).
+When a term is resolved, update `GLOSSARY.md` right there. Capture each term as soon as it resolves. Use the format in [GLOSSARY-FORMAT.md](./GLOSSARY-FORMAT.md). Done when the term is in `GLOSSARY.md` and any conflict with an existing entry has been raised with the user.
 
-`GLOSSARY.md` should be totally devoid of implementation details. Do not treat `GLOSSARY.md` as a spec, a scratch pad, or a repository for implementation decisions. It is a glossary and nothing else.
+Keep `GLOSSARY.md` to glossary entries only: each term's definition and the synonyms it replaces. Implementation details, specs, and scratch notes belong elsewhere.
 
 ### Offer ADRs sparingly
 
@@ -91,7 +91,7 @@ Create `GLOSSARY-MAP.md` only when the repo has, or is about to have, multiple c
 - The same term means different things in two areas of the code
 - A root `GLOSSARY.md` exists and a second context appears
 
-Don't infer contexts from directory names alone.
+Base the context split on the domain's language and on what the user confirms, not on directory names alone.
 
 Before creating the map, confirm with the user:
 
@@ -105,4 +105,4 @@ Then:
 3. Ask what to do with the existing root `GLOSSARY.md`. The usual choice is to move each term into the context it belongs to. A term used by several contexts can stay in the root file as a shared glossary, which the map should then list as a context.
 4. Keep `docs/adr/` at the root for system-wide decisions. Context-specific ADRs go in `<context>/docs/adr/`, created through the `adr` skill.
 
-Never create the map as a placeholder. Once it exists, every context it lists must have its own `GLOSSARY.md`.
+Create the map only with every context it lists already in place: each listed context has its own `GLOSSARY.md`. Done when every listed context has its file.

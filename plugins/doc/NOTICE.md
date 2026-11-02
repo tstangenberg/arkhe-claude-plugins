@@ -4,6 +4,7 @@ The following skill in this plugin is adapted from
 [matts-skills](https://github.com/mattpocock/skills) (MIT License):
 
 - `skills/domain-modeling/` (adapted from `domain-modeling`, including `GLOSSARY-FORMAT.md`)
+- `skills/creating-questionnaires/` (adapted from `to-questionnaire`)
 
 ADR creation is delegated to this plugin's own `adr` skill rather than the upstream `ADR-FORMAT.md`, which the upstream skill references but does not ship.
 

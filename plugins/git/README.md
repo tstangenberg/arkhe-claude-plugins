@@ -317,7 +317,7 @@ Scaffold or migrate a repository onto [release-please](https://github.com/google
 
 ---
 
-### Skills (11)
+### Skills (12)
 
 All commands are implemented as **Skills** - slash commands delegate to skills that contain inline Bash workflows executed by Claude.
 
@@ -462,6 +462,13 @@ Moves issues and external PRs/MRs through the triage state machine: categorises 
 
 **Location**: `skills/triaging-issues/` (includes `AGENT-BRIEF.md` and `OUT-OF-SCOPE.md`)
 **Invoked by**: `/triaging-issues` skill (command-invoke)
+
+#### 12. setting-up-git-guardrails
+
+Installs a `PreToolUse` hook that blocks destructive git commands (`push`, `reset --hard`, `clean -f`, `branch -D`, `checkout .`/`restore .`) before Claude runs them. Opt-in: project or global scope. Note that it also blocks the git plugin's own push-based commands while installed.
+
+**Location**: `skills/setting-up-git-guardrails/` (includes `scripts/block-dangerous-git.sh`)
+**Invoked by**: `/setting-up-git-guardrails` skill (command-invoke)
 
 **Attribution**: adapted from matts-skills (MIT); see [NOTICE.md](NOTICE.md).
 

@@ -71,13 +71,13 @@ Show counts and a one-line summary per item. Let the maintainer pick.
 
 ## Triage a specific issue or PR
 
-1. **Gather context.** Read the full issue or PR (body, comments, labels, author, dates; for a PR, the diff too). Parse any prior triage notes so you don't re-ask resolved questions. Explore the codebase using the project's glossary (`GLOSSARY.md`, if present) and respecting ADRs in `docs/adr/` in the area. Run two checks: (a) **redundancy**: search for an existing implementation of the requested behavior by domain concept, not just the request's wording, and report where you looked. If found, it's an already-implemented `wontfix` (step 5). (b) **prior rejection**: read `.out-of-scope/*.md` and surface any that resemble this request.
+1. **Gather context.** Read the full issue or PR (body, comments, labels, author, dates; for a PR, the diff too). Parse any prior triage notes so you don't re-ask resolved questions. Explore the codebase using the project's glossary (`GLOSSARY.md`, if present) and respecting ADRs in `docs/adr/` in the area. Run two checks: (a) **redundancy**: search for an existing implementation of the requested behavior by domain concept, not just the request's wording, and report where you looked. If found, it's an already-implemented `wontfix` (step 5). (b) **prior rejection**: read `.out-of-scope/*.md` and surface any that resemble this request. Done when you can state the category, the state, and whether the request is already implemented.
 
-2. **Recommend.** Tell the maintainer your category and state recommendation with reasoning, plus a brief codebase summary relevant to the request (including whether it's already implemented). Wait for direction.
+2. **Recommend.** Tell the maintainer your category and state recommendation with reasoning, plus a brief codebase summary relevant to the request (including whether it's already implemented). Wait for direction. Done when the maintainer has picked a direction.
 
-3. **Verify the claim.** Before any clarifying, check that the claim holds up. For a bug, reproduce it from the reporter's steps. For a PR, confirm the diff does what it claims: check it out, run the relevant tests or commands. Report what happened: confirmed (with code path), failed, or insufficient detail (a strong `needs-info` signal). A confirmed verification makes a much stronger agent brief.
+3. **Verify the claim.** Before any clarifying, check that the claim holds up. For a bug, reproduce it from the reporter's steps. For a PR, confirm the diff does what it claims: check it out, run the relevant tests or commands. Report what happened: confirmed (with code path), failed, or insufficient detail (a strong `needs-info` signal). A confirmed verification makes a much stronger agent brief. Done when the claim is marked confirmed, failed, or insufficient, with the evidence for that result.
 
-4. **Clarify (if needed).** If the request needs fleshing out, run `/core:discuss` on it and work through the questions a round at a time. Capture resolved decisions as they land: update `GLOSSARY.md` and record architectural decisions with the `doc` plugin's `adr` skill.
+4. **Clarify (if needed).** If the request needs fleshing out, run `/core:discuss` on it and work through the questions a round at a time. Capture resolved decisions as they land: update `GLOSSARY.md` and record architectural decisions with the `doc` plugin's `adr` skill. Done when the request is specific enough to brief, or the open questions are posted as triage notes.
 
 5. **Apply the outcome:**
    - `ready-for-agent`: post an agent brief comment ([AGENT-BRIEF.md](AGENT-BRIEF.md)).
@@ -87,7 +87,7 @@ Show counts and a one-line summary per item. Let the maintainer pick.
      - **Already implemented**: point to where the change already lives; do **not** write to `.out-of-scope/` (that KB is for *rejected* requests, not built ones).
      - **Rejected (bug)**: give a polite explanation, then close.
      - **Rejected (enhancement)**: write to `.out-of-scope/`, link to it from a comment, then close ([OUT-OF-SCOPE.md](OUT-OF-SCOPE.md)).
-   - `needs-triage`: apply the role. Optional comment if there's partial progress.
+   - `needs-triage`: apply the role. Optional comment if there's partial progress. Done when the role is applied and any required comment is posted.
 
 ## Quick state override
 

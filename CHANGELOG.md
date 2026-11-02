@@ -22,6 +22,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 #### Glossary Step in SDLC (core plugin)
 - **`sdlc-develop` Phase 5, step 1 "Update Domain Glossary"** (runs before Final Tasks Verification; later Phase 5 steps renumbered 2–6): collects domain terms from `spec.md`, `plan.md`, and the feature's public names, then runs `domain-modeling`. Skipped when the `doc` plugin isn't installed. Under `--auto`, conflicts are recorded in Next Steps instead of resolved. Changed glossary and ADR files are added to Files Modified.
 
+#### Skills Ported from matts-skills
+- **`setting-up-git-guardrails`** (git plugin, user-invoked): installs a `PreToolUse` hook that blocks `git push`, `reset --hard`, `clean -f`, `branch -D`, and `checkout`/`restore` of all files. Opt-in, project or global scope. The hook fails closed when `jq` is missing or input can't be parsed. It also blocks the git plugin's own push-based commands while installed.
+- **`writing-for-agents`** (core plugin, auto-invoke): writing guidance for skills, `CLAUDE.md`, `AGENTS.md`, and agent-facing docs, with `SKILL-MECHANICS.md` for invocation choice and router skills.
+- **`session-retro`** (core plugin, user-invoked): retrospective on a coding session that suggests environment improvements.
+- **`creating-questionnaires`** (doc plugin, user-invoked): turns an open decision into a questionnaire for a recipient to fill in.
+- Adapted from matts-skills (MIT); see `plugins/git/NOTICE.md`, `plugins/doc/NOTICE.md`, and `plugins/core/NOTICE.md`.
+
 ### Removed
 
 #### AI Plugin Retired (BREAKING)

@@ -5,6 +5,7 @@ The following skills in this plugin are adapted from
 
 - `skills/configuring-issue-tracker/` (adapted from `setup-matt-pocock-skills`)
 - `skills/triaging-issues/` (adapted from `triage`, including `AGENT-BRIEF.md` and `OUT-OF-SCOPE.md`)
+- `skills/setting-up-git-guardrails/` (adapted from `git-guardrails-claude-code`, including `scripts/block-dangerous-git.sh`)
 
 ```
 MIT License

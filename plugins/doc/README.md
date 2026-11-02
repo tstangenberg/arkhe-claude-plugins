@@ -30,6 +30,8 @@ Multi-purpose documentation toolkit for generating comprehensive technical docum
 
 - **domain-modeling**: Auto-invoked domain model builder. Maintains `GLOSSARY.md` (or `GLOSSARY-MAP.md` with per-context glossaries for multi-context repos) as terms are resolved: challenges terms that conflict with the glossary, sharpens vague language, stress-tests relationships with concrete scenarios, and cross-checks claims against the code. Triggers on "glossary", "ubiquitous language", "domain terms", "sharpen terminology", or when editing `GLOSSARY.md`. Hands ADR-worthy decisions to the `adr` skill.
 
+- **creating-questionnaires**: User-invoked. Turns a decision the user can't answer alone into a questionnaire for someone else to fill in async or in a meeting. Interviews the user only about who the recipient is and what they need back, then writes `questionnaire-<slug>.md` with questions ordered most-important-first. Invoked as `/creating-questionnaires`.
+
 - **doc-freshness**: Auto-invoked documentation drift and staleness detection. Scans for broken links, version mismatches, git staleness, code-doc drift, and cross-document inconsistencies. Supports tiered scanning: basic checks (links, git age) for all `.md` files, deep checks (version drift, semantic staleness, cross-doc consistency) for frontmatter-tracked docs. Modes: `scan`, `links`, `check <path>`, `drift <path>`, `cross-doc`, `report`. Triggers on "doc freshness", "stale docs", "documentation drift", "broken links", "doc health", "doc audit".
 
 ### Commands

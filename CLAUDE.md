@@ -100,13 +100,13 @@ For per-platform install steps, see [INSTALLATION.md](INSTALLATION.md). For the 
 Quality control and workflow orchestration utilities.
 - **Agents**: `deep-think-partner`, `deep-researcher`, `code-explorer`, `code-architect`, `code-reviewer`, `systematic-debugger`
 - **Commands**: `/discuss`, `/double-check` (`--deep` for multi-agent review), `/develop`, `/debug` (`--deep` for agent-assisted), `/think`, `/research`
-- **Skills**: `sdlc-develop` (command-invoke), `deep-research` (auto-invoke), `workflow-orchestration` (auto-invoke), `lyra` (auto-invoke, AI prompt optimization)
+- **Skills**: `sdlc-develop` (command-invoke), `deep-research` (auto-invoke), `workflow-orchestration` (auto-invoke), `lyra` (auto-invoke, AI prompt optimization), `writing-for-agents` (auto-invoke, guidance for skills and CLAUDE.md/AGENTS.md), `session-retro` (command-invoke)
 - **UI routes** (`sdlc-develop` Phase 1): sibling design routes — live prototype gallery ideation (via `design-intent:prototype`), Claude Design link reference (WebFetch input), Stitch prompts, existing designs, or skip. Phase 4 **VERIFY UI** gate adds a **LIVE PREVIEW** option (via devtools `arkhe-preview`). Prototype/preview routes degrade gracefully when `design-intent`/`devtools` aren't installed.
 
 ### Doc Plugin
 Multi-purpose documentation toolkit with RFC management and documentation health.
 - **Agents**: `rfc-critic`, `adr-critic`
-- **Skills**: `doc-coauthoring`, `diagramming`, `code-explanation`, `jd-docs`, `diataxis`, `adr`, `rfc`, `doc-freshness`, `research-frontmatter`, `domain-modeling` (all auto-invoke)
+- **Skills**: `doc-coauthoring`, `diagramming`, `code-explanation`, `jd-docs`, `diataxis`, `adr`, `rfc`, `doc-freshness`, `research-frontmatter`, `domain-modeling` (all auto-invoke), `creating-questionnaires` (command-invoke)
 - **Commands**: `/code-explain`, `/diagram`, `/rfc`, `/health`
 - **Use**: Documentation generation, code explanation, Mermaid diagrams, Johnny.Decimal management, Diataxis framework (audit, classify, validate, scaffold), ADR management, RFC lifecycle (create, review, list, update), documentation health (freshness, links, drift, cross-doc consistency), research frontmatter validation (JD-aware path resolution, RD-rules)
 
@@ -124,7 +124,7 @@ Claude + Google Stitch workflow toolkit with MCP integration.
 ### Git Plugin
 Git workflow automation for commits, pull requests, branching, changelog generation, releases, and Dependabot triage.
 - **Commands**: `/commit`, `/create-pr`, `/create-branch`, `/changelog`, `/release`, `/release-please-setup`, `/resolve-review`, `/stale-branches`, `/cleanup-branches`, `/worktree`
-- **Skills**: 13 skills (4 auto-invoke: `generating-changelog`, `listing-stale-branches`, `cleaning-up-branches`, `resolving-pr-issues`; 9 command-invoke: `creating-branch`, `creating-commit`, `creating-pr`, `creating-worktree`, `releasing`, `dependabot-review`, `release-please-setup`, `configuring-issue-tracker`, `triaging-issues`)
+- **Skills**: 14 skills (4 auto-invoke: `generating-changelog`, `listing-stale-branches`, `cleaning-up-branches`, `resolving-pr-issues`; 10 command-invoke: `creating-branch`, `creating-commit`, `creating-pr`, `creating-worktree`, `releasing`, `dependabot-review`, `release-please-setup`, `configuring-issue-tracker`, `triaging-issues`, `setting-up-git-guardrails`)
 - **Use**: Git commits, PRs, branches, changelogs, semantic versioning releases, release pipeline scaffolding, release-please setup/migration (monorepo + single-package + mixed-language, with tag-keyed deploy/publish templates), Dependabot PR triage
 
 ### Design Intent Plugin
