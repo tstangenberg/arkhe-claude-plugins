@@ -192,7 +192,9 @@ class ValidationTranslationAspect {
 
 **Why an aspect**: The translation applies to every `@Validated` bean, including ones added later. A per-method try/catch is easy to forget, and then the raw exception leaks.
 
-**Why `HIGHEST_PRECEDENCE`**: Other advice should see the domain exception, not the Jakarta one.
+**Why `HIGHEST_PRECEDENCE`**: Low-order around advice surrounds higher-order advice and can translate failures before returning to the caller. Inner advice can still see the original failure; this does not guarantee that every other aspect sees the domain exception.
+
+**Coexisting aspects**: Do not give overlapping translators equal order values and assume a relative order. Let this aspect own validation mapping; a general facade translator must pass the resulting exception through unchanged. Verify method-validation and transaction advisor chains through Spring beans. See [spring-boot-aop](../spring-boot-aop/SKILL.md) for ordering and facade exception translation.
 
 **Pointcut scope**: `@within(Validated)` matches the class annotation. Narrow it to your service package if the aspect should not touch other beans.
 

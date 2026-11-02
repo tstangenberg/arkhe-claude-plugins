@@ -69,6 +69,7 @@ See [EXAMPLES.md](EXAMPLES.md) for complete working examples including:
 |------|-------|
 | Controllers, ProblemDetail, request DTOs | `spring-boot-web-api` |
 | Testing validation rules | `spring-boot-testing` |
+| Proxy mechanics, advice ordering, general exception translation | [spring-boot-aop](../spring-boot-aop/SKILL.md) |
 | Aggregate invariants | `domain-driven-design` |
 | Dependency versions | `spring-boot-verify` |
 

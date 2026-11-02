@@ -140,6 +140,7 @@ Sort findings by severity (Critical > Error > Warning). If no issues found acros
 | domain-driven-design | `**/domain/**/*.java`, `**/model/**/*.java` |
 | spring-boot-data-ddd | `**/*Repository.java`, `**/entity/**/*.java` |
 | spring-boot-web-api | `**/*Controller.java` |
+| spring-boot-aop | `**/*Aspect.{java,kt}`, `**/*ExceptionTranslator.{java,kt}`; content matches for `@Aspect`, `@Around`, `@Pointcut`, `ProceedingJoinPoint` |
 | spring-boot-modulith | `**/module-info.java`, `**/spring.modulith.json` |
 | spring-boot-security | `**/*Security*.java`, `**/*Config*.java` |
 | spring-boot-observability | `**/actuator/**/*.java`, `**/*Health*.java` |
@@ -147,6 +148,8 @@ Sort findings by severity (Critical > Error > Warning). If no issues found acros
 | spring-boot-verify | `pom.xml`, `build.gradle*`, `**/application.{yml,yaml,properties}` |
 
 ---
+
+For AOP matches, trace pointcuts to their facade targets and include the associated translator, public exception types, transaction configuration, validation advice, and proxy tests in `files_by_skill`. Facade or service names alone are not enough to establish an AOP match.
 
 ## Critical Rules
 

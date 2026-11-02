@@ -227,7 +227,7 @@ class InvalidInputException extends RuntimeException {
 
 **Key points**:
 - Pointcut on `@within(Validated)` covers every `@Validated` service. Narrow it to a package if needed.
-- `HIGHEST_PRECEDENCE` makes sure other advice sees the domain exception.
+- `HIGHEST_PRECEDENCE` surrounds higher-order advice; callers see the translated exception, but inner advice may still see the original one. If a general facade translator also applies, assign distinct orders and leave validation mappings here. Verify the actual advisor chain; see [spring-boot-aop](../spring-boot-aop/SKILL.md).
 - The exception keeps the original `ConstraintViolationException` as its cause. Its `toString()` can include invalid values, so do not log whole violations; log the property path and message only.
 - The web advice builds the field errors from the violations, using the leaf of each property path (`place.command.customerId` becomes `customerId`) and the message. Parameter-level violations have no property node, so use the parameter name.
 - The web advice maps `InvalidInputException` to a 400 ProblemDetail, following the ProblemDetail shape in `spring-boot-web-api`.

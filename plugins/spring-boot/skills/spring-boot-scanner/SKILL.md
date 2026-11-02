@@ -30,11 +30,14 @@ Scans in 3 phases: (1) detect Spring Boot project via build files, (2) scan anno
 | `@Service` in `**/domain/**` or `**/service/**` | domain-driven-design | LOW |
 | `@ApplicationModule`, `@ApplicationModuleListener` | spring-boot-modulith | LOW |
 | `@Valid`, `@Validated`, `@Constraint`, `ConstraintValidator` | spring-boot-bean-validation | LOW |
+| `@Aspect`, `@Around`, `@Pointcut`, `@EnableAspectJAutoProxy` | spring-boot-aop | LOW |
 | `@Timed`, `@Counted`, `HealthIndicator`, `MeterRegistry` | spring-boot-observability | LOW |
 | `@EnableWebSecurity`, `@PreAuthorize`, `@Secured`, `SecurityFilterChain` | spring-boot-security | HIGH |
 | `@SpringBootTest`, `@WebMvcTest`, `@DataJpaTest`, `@MockitoBean` | spring-boot-testing | HIGH |
 | `@MockBean` (deprecated) | spring-boot-testing | HIGH + WARNING |
 | Build file with version < 4.0 | spring-boot-verify | HIGH |
+
+For an explicit request to translate technical exceptions at a module facade, route to `spring-boot-aop` even before an aspect exists. A plain `@Service` alone is not an AOP trigger. When reviewing detected aspects, follow their pointcuts to associated facades and translators.
 
 Use this script to detect patterns:
 
@@ -73,6 +76,7 @@ Always confirm before proceeding when detecting:
 **Delegates to Skills**:
 - `spring-boot-web-api` → REST patterns
 - `spring-boot-bean-validation` → Constraints, custom validators, validation error mapping
+- `spring-boot-aop` → Facade aspects, module exception translation, proxy/advice ordering
 - `spring-boot-data-ddd` → Repository/Entity patterns
 - `spring-boot-security` → Security configuration
 - `spring-boot-testing` → Test patterns

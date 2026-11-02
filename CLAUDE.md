@@ -149,7 +149,7 @@ Browser automation via Playwright CLI for testing, screenshots, and interaction 
 Domain-Driven Design patterns with Spring Boot 4 implementation.
 - **Agents**: `spring-boot-reviewer`, `spring-boot-upgrade-verifier`
 - **Commands**: `/spring-review`, `/verify-upgrade`, `/spring-refresh`
-- **Skills**: `spring-boot-scanner`, `domain-driven-design`, `spring-boot-data-ddd`, `spring-boot-web-api`, `spring-boot-modulith`, `spring-boot-security`, `spring-boot-observability`, `spring-boot-testing`, `spring-boot-verify`, `flyway-consolidate` (all auto-invoked), `spring-refresh` (command-invoke)
+- **Skills**: `spring-boot-scanner`, `domain-driven-design`, `spring-boot-data-ddd`, `spring-boot-web-api`, `spring-boot-bean-validation`, `spring-boot-aop`, `spring-boot-modulith`, `spring-boot-security`, `spring-boot-observability`, `spring-boot-testing`, `spring-boot-verify` (auto-invoked), `flyway-consolidate`, `spring-refresh` (command-invoke)
 - **Use**: DDD architecture, Spring Data, REST APIs, Spring Modulith, Spring Security 7, observability, testing, skill content freshness tracking
 
 ### Ralph Plugin

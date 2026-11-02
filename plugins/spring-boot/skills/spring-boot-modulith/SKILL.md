@@ -70,6 +70,7 @@ See [EXAMPLES.md](EXAMPLES.md) for complete working examples including:
 | Data layer per module | `spring-boot-data-ddd` |
 | Module event testing | `spring-boot-testing` |
 | REST APIs for modules | `spring-boot-web-api` |
+| Facade aspects and module-owned exception translation | [spring-boot-aop](../spring-boot-aop/SKILL.md) |
 
 ## Anti-Pattern Checklist
 
