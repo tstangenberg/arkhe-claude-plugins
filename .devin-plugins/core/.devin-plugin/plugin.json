@@ -1,0 +1,16 @@
+{
+  "name": "core",
+  "version": "2.4.0",
+  "description": "Quality control and workflow orchestration utilities",
+  "skills": [
+    "skills",
+    "devin-commands"
+  ],
+  "optionalPlugins": [
+    {
+      "source": "git-subdir",
+      "url": "https://github.com/tstangenberg/arkhe-claude-plugins.git",
+      "path": ".devin-plugins/devtools"
+    }
+  ]
+}

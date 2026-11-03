@@ -1,0 +1,16 @@
+{
+  "name": "design-intent",
+  "version": "2.3.0",
+  "description": "UI/UX Design Plugin - Visual fidelity from Figma/mockups, design system enforcement, React UI prototyping with live browser gallery, and pattern memory. Focused exclusively on frontend visual implementation.",
+  "skills": [
+    "skills",
+    "devin-commands"
+  ],
+  "optionalPlugins": [
+    {
+      "source": "git-subdir",
+      "url": "https://github.com/tstangenberg/arkhe-claude-plugins.git",
+      "path": ".devin-plugins/devtools"
+    }
+  ]
+}

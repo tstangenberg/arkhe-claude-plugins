@@ -92,6 +92,7 @@ class ClientConfig {
 | DDD concepts | `domain-driven-design` |
 | Data layer for DTOs | `spring-boot-data-ddd` |
 | Controller testing | `spring-boot-testing` |
+| Service-facade translation with one code/message/cause exception and code/message-only DTO | [spring-boot-aop](../spring-boot-aop/SKILL.md) |
 | API security | `spring-boot-security` |
 
 ## Anti-Pattern Checklist

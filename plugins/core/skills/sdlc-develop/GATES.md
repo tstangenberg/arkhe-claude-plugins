@@ -28,7 +28,8 @@ Human-in-the-Loop gates ensure appropriate oversight at critical decision points
 | Step 4.1e | Two-Stage Wave Review | ⚠️ Tier 2 | Stage 1: spec compliance, Stage 2: code quality; 1 retry bound across both stages |
 | Step 4.1f | Wave Checkpoint | ⚠️ Tier 2 | Wave complete, continue or stop |
 | Step 4.2 | Quality & Completion | ⛔ Tier 1 | Combined RULE ZERO + wave review aggregation; VERIFY UI option available |
-| Phase 5.4 | Project Learnings | ✅ Tier 3 | Auto-skip with `--auto`; no memories saved |
+| Phase 5.1 | Update Domain Glossary | Conditional | Tier 2 interactive (`domain-modeling` asks about conflicts and ADRs); Tier 3 under `--auto`, conflicts go to Next Steps. Auto-skip when `domain-modeling` is unavailable |
+| Phase 5.5 | Project Learnings | ✅ Tier 3 | Auto-skip with `--auto`; no memories saved |
 
 ---
 

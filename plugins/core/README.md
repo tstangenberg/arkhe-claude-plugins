@@ -18,6 +18,10 @@ Quality control and workflow orchestration utilities for Claude Code.
 
 - **lyra** (auto-invoke): Transforms vague inputs into precision-optimized AI prompts using a 4-D methodology (Deconstruct, Diagnose, Develop, Deliver). Auto-triggered when user mentions "optimize prompt", "improve prompt", "lyra", or "prompt engineering". Supports `BASIC`/`DETAIL` modes, per-platform tuning (Claude, ChatGPT, Gemini, reasoning models), and a `--research` flag for current best practices. Invoked as `/core:lyra`.
 
+- **writing-for-agents** (auto-invoke): Reference for writing any document an agent consumes: skills, `CLAUDE.md`/`AGENTS.md`, and docs reached by a pointer. Covers context pointers, the context and cognitive load trade-off, information hierarchy and progressive disclosure, completion criteria, leading words, and pruning. Auto-triggered when creating or editing skills, modifying `CLAUDE.md` or `AGENTS.md`, or pruning steering instructions. `SKILL-MECHANICS.md` covers invocation choice and router skills.
+
+- **session-retro** (command-invoke): Retrospective on a coding session that suggests improvements to the agent's environment: navigation pointers, automated checks, coding standards, `CLAUDE.md`/`AGENTS.md` pruning, tool economy, and information access. Invoked as `/core:session-retro`.
+
 ### Agents
 
 - **deep-think-partner**: Elite reasoning partner for complex logical problems, multi-step reasoning challenges, and strategic decisions. Triggers on "should I", "what are the tradeoffs", "help me decide", or "think through". Provides structured output with problem restatement, multi-perspective analysis, and ranked recommendations. Uses Opus model with sequential-thinking MCP for maximum reasoning depth.

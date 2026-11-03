@@ -38,6 +38,15 @@ SKILL_PATTERNS: Dict[str, List[str]] = {
         r"@ControllerAdvice",
         r"@RestControllerAdvice",
     ],
+    "spring-boot-aop": [
+        r"@(?:org\.aspectj\.lang\.annotation\.)?Aspect\b",
+        r"@(?:org\.aspectj\.lang\.annotation\.)?Around\b",
+        r"@(?:org\.aspectj\.lang\.annotation\.)?Before\b",
+        r"@(?:org\.aspectj\.lang\.annotation\.)?After(?:Returning|Throwing)?\b",
+        r"@(?:org\.aspectj\.lang\.annotation\.)?Pointcut\b",
+        r"@(?:org\.springframework\.context\.annotation\.)?EnableAspectJAutoProxy\b",
+        r"\bProceedingJoinPoint\b",
+    ],
     "spring-boot-data-ddd": [
         r"@Entity",
         r"@Repository",
@@ -169,6 +178,7 @@ ESCALATION_PATTERNS: Dict[str, Dict] = {
 
 # Risk classification
 LOW_RISK_SKILLS = {
+    "spring-boot-aop",
     "spring-boot-web-api",
     "spring-boot-data-ddd",
     "domain-driven-design",

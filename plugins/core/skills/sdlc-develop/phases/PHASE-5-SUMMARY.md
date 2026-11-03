@@ -23,7 +23,26 @@ Before verifying completion, synchronize task status to tasks.md:
 
 **Note:** This ensures tasks.md serves as a complete record of completed work, useful for handoffs and documentation.
 
-### 1. Final Tasks Verification
+### 1. Update Domain Glossary
+
+Sync the project's domain vocabulary with what was built. This is a safety net: terms resolved during Phase 1 and Phase 2 should already be in the glossary (the `domain-modeling` skill records them inline), and this step catches any that were missed.
+
+**Skip** when the `doc` plugin's `domain-modeling` skill isn't installed, and log: "Glossary update skipped: domain-modeling skill not available."
+
+1. **Find the glossary.** Look for `GLOSSARY-MAP.md` at the repo root (multi-context) or `GLOSSARY.md` (single context). If neither exists, continue: `domain-modeling` creates one when there's a term to record.
+2. **Collect candidate terms** from:
+   - `{spec_path}/spec.md`: requirements and any terms defined in Phase 1
+   - `{spec_path}/plan.md`: domain concepts named in the architecture
+   - Public names added or renamed in this feature's diff (types, aggregates, events) that the glossary doesn't define
+3. **Invoke the `domain-modeling` skill** with the candidate list. It adds terms that are specific to the project's domain, flags any that conflict with an existing definition, and offers an ADR only for decisions that are hard to reverse, surprising without context, and the result of a real trade-off.
+   - **Under `--auto`**, pass this instruction along with the candidate list: "Autonomous mode: do not ask questions. Leave conflicting terms unchanged and report each conflict and each ADR you would offer in your final message."
+4. **Under `--auto`**, record each reported conflict under "Next Steps" in the completion summary, and leave the glossary unchanged for those terms.
+5. **Add changed glossary and ADR files** to the "Files Modified" list in the summary.
+6. Log: "Glossary: X terms added, Y conflicts flagged, Z ADRs offered."
+
+Implementation details never go into the glossary. If a candidate is only a code-level name (a helper, a config key), leave it out.
+
+### 2. Final Tasks Verification
 
 **Task tracking confirmation:**
 1. Use `TaskList` to verify all tasks are marked `completed`
@@ -35,7 +54,7 @@ Before verifying completion, synchronize task status to tasks.md:
 1. Read `{spec_path}/spec.md`
 2. Confirm all acceptance criteria are marked complete
 
-### 2. Provide Completion Summary
+### 3. Provide Completion Summary
 
 Generate summary in this format:
 
@@ -84,11 +103,11 @@ Generate summary in this format:
 - [Technical debt to address]
 ```
 
-### 3. Update Spec Status
+### 4. Update Spec Status
 
 Update `{spec_path}/spec.md` status to "Complete".
 
-### 4. Save Project Learnings (Persistent Memory Pattern)
+### 5. Save Project Learnings (Persistent Memory Pattern)
 
 Evaluate whether discoveries from this feature should persist as project memory.
 
@@ -133,7 +152,7 @@ Evaluate whether discoveries from this feature should persist as project memory.
 
 **If no candidates found**: Skip silently, no user interaction.
 
-### 5. Status Document Sync Suggestion
+### 6. Status Document Sync Suggestion
 
 After the completion summary, check if the project has roadmap status documents:
 

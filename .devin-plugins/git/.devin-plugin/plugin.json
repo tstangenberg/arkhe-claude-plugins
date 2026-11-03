@@ -1,0 +1,9 @@
+{
+  "name": "git",
+  "version": "1.3.0",
+  "description": "Git workflow automation (commit, PR, branching, changelog)",
+  "skills": [
+    "skills",
+    "devin-commands"
+  ]
+}

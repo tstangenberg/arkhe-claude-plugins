@@ -91,6 +91,7 @@ Detailed step-by-step detection and routing workflow.
 │    spring-boot-data-ddd,                                        │
 │    domain-driven-design,                                        │
 │    spring-boot-modulith,                                        │
+│    spring-boot-aop,                                             │
 │    spring-boot-observability                                    │
 │  ]                                                               │
 │                                                                  │

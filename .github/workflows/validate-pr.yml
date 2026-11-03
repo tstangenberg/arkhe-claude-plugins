@@ -57,9 +57,12 @@ jobs:
               - '.claude-plugin/marketplace.json'
               - '.gemini-extensions/**'
               - '.codex-marketplace/**'
+              - '.devin-plugins/**'
+              - '.devin-plugin/**'
               - 'scripts/build-shims.sh'
               - 'scripts/transpile-commands.py'
               - 'scripts/generate-codex-agents-md.py'
+              - 'scripts/generate-devin-commands.py'
               - 'scripts/update-plugin-readmes.py'
 
   validate-plugins:
@@ -227,21 +230,21 @@ jobs:
 
       - name: Verify shims are in sync
         run: |
-          if ! git diff --exit-code .gemini-extensions/ .codex-marketplace/ plugins/*/README.md; then
+          if ! git diff --exit-code .gemini-extensions/ .codex-marketplace/ .devin-plugins/ plugins/*/README.md; then
             echo "::error::Shim drift detected. Run 'bash scripts/build-shims.sh' locally and commit the result."
             exit 1
           fi
           echo "Shims are in sync with canonical sources."
 
-      - name: Verify intra-plugin version sync (Claude/Gemini/Codex per plugin)
+      - name: Verify intra-plugin version sync (Claude/Gemini/Codex/Devin per plugin)
         run: |
           # `bump-version.sh --check` without --plugin treats cross-plugin
-          # version differences as informational. To catch a plugin whose 3
+          # version differences as informational. To catch a plugin whose
           # manifests have drifted out of sync, run --check per plugin.
           failed_plugins=()
           while IFS= read -r plugin; do
             if ! bash scripts/bump-version.sh --plugin "$plugin" --check >/dev/null 2>&1; then
-              echo "::error::Plugin '$plugin' has version drift across its 3 manifests. Run 'bash scripts/bump-version.sh --plugin $plugin --check' locally for details."
+              echo "::error::Plugin '$plugin' has version drift across its manifests. Run 'bash scripts/bump-version.sh --plugin $plugin --check' locally for details."
               failed_plugins+=("$plugin")
             fi
           done < <(jq -r '.files[].plugin' .version-bump.json | sort -u)
@@ -249,4 +252,4 @@ jobs:
             echo "Drifted plugins: ${failed_plugins[*]}"
             exit 1
           fi
-          echo "All plugins are in version-sync across Claude/Gemini/Codex manifests."
+          echo "All plugins are in version-sync across Claude/Gemini/Codex/Devin manifests."

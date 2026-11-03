@@ -35,6 +35,7 @@ RESEARCH_TO_SKILLS: Dict[str, List[str]] = {
     ],
     "spring-boot-ddd-implementation.md": [
         "domain-driven-design",
+        "spring-boot-aop",
         "spring-boot-data-ddd",
         "spring-boot-web-api",
         "spring-boot-modulith",
